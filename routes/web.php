@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,20 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Homepage
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/tasks', 'TasksController@index');
+Route::get('/tasks/{task}', 'TasksController@show');
+
+/*
 Route::get('/tasks', function () {
-    $name  = 'John';
-    $tasks = DB::table('tasks')->get();
+    $name = 'John';
+//    $tasks = DB::table('tasks')->get();
+//    $tasks = App\Task::all();
+    $tasks = App\Task::incomplete();
 
     return view('tasks.index', compact('name', 'tasks'));
 });
 
 Route::get('/tasks/{task}', function ($id) {
-    $name  = 'Tereodor';
-    $task = DB::table('tasks')->find($id);
+    $name = 'Tereodor';
+//    $task = DB::table('tasks')->find($id);
+    $task = App\Task::find($id);
 
     return view('tasks.show', compact('name', 'task'));
 });
+*/
